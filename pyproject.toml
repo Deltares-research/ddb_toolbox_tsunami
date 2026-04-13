@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "delftdashboard-tsunami-toolbox"
+name = "delftdashboard_tsunami_toolbox"
 description = "Delft Dashboard toolbox for generating tsunami initial conditions"
 readme = "README.md"
 authors = [
