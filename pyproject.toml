@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "delftdashboard-tsunami-toolbox"
+description = "Delft Dashboard toolbox for generating tsunami initial conditions"
+readme = "README.md"
+authors = [
+    { name = "Maarten van Ormondt", email = "maarten.vanormondt@deltares.nl"},
+]
+license = { text = "MIT" }
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Hydrology",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "scipy",
+    "geopandas",
+    "shapely",
+    "xarray",
+    "rioxarray",
+    "cht_tsunami @ git+https://github.com/deltares-research/cht_tsunami.git",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+tests = ["pytest", "pytest-cov"]
+
+[project.entry-points."delftdashboard.toolboxes"]
+tsunami = "delftdashboard_tsunami_toolbox"
+
+[tool.setuptools]
+zip-safe = true
+
+[tool.setuptools.dynamic]
+version = { attr = "delftdashboard_tsunami_toolbox.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["delftdashboard_tsunami_toolbox*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.yml"]
+
+[tool.pytest.ini_options]
+addopts = "--cov delftdashboard_tsunami_toolbox --cov-report xml"
+testpaths = ["tests"]

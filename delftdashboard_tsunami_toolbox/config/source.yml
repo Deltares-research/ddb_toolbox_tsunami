@@ -1,0 +1,201 @@
+element:
+- style: checkbox
+  position:
+    x: 10
+    y: 10
+    width: 120
+    height: 20
+  variable: show_faults
+  text: Show Faults
+  method: toggle_faults
+  tooltip: Show GEM fault traces. Click a fault to populate parameters.
+  text_position: left
+- style: pushbutton
+  position:
+    x: 10
+    y: 105
+    width: 120
+    height: 25
+  text: Click EQ Location on Map
+  method: set_source_from_map
+  tooltip: Click on the map to set the source location
+  text_position: left
+- style: edit
+  position:
+    x: 70
+    y: 80
+    width: 60
+    height: 20
+  variable: longitude
+  text: Lon
+  text_position: left
+- style: edit
+  position:
+    x: 70
+    y: 55
+    width: 60
+    height: 20
+  variable: latitude
+  text: Lat
+  text_position: left
+- style: edit
+  position:
+    x: 195
+    y: 110
+    width: 60
+    height: 20
+  variable: depth
+  text: Depth (km)
+  method: edit_parameter
+  text_position: left
+- style: edit
+  position:
+    x: 195
+    y: 60
+    width: 60
+    height: 20
+  variable: length
+  text: Length (km)
+  method: edit_parameter
+  text_position: left
+- style: edit
+  position:
+    x: 195
+    y: 85
+    width: 60
+    height: 20
+  variable: width
+  text: Width (km)
+  method: edit_parameter
+  text_position: left
+- style: edit
+  position:
+    x: 315
+    y: 110
+    width: 60
+    height: 20
+  variable: slip
+  text: Slip (m)
+  method: edit_parameter
+  text_position: left
+- style: edit
+  position:
+    x: 315
+    y: 60
+    width: 60
+    height: 20
+  variable: strike
+  text: Strike (deg)
+  method: edit_parameter
+  text_position: left
+- style: edit
+  position:
+    x: 315
+    y: 85
+    width: 60
+    height: 20
+  variable: dip
+  text: Dip (deg)
+  method: edit_parameter
+  text_position: left
+- style: edit
+  position:
+    x: 315
+    y: 35
+    width: 60
+    height: 20
+  variable: rake
+  text: Rake (deg)
+  method: edit_parameter
+  text_position: left
+- style: edit
+  position:
+    x: 485
+    y: 110
+    width: 60
+    height: 20
+  variable: dx
+  text: dx (deg)
+  text_position: left
+- style: edit
+  position:
+    x: 485
+    y: 85
+    width: 60
+    height: 20
+  variable: buffer_size
+  text: Buffer (deg)
+  text_position: left
+- style: checkbox
+  position:
+    x: 485
+    y: 35
+    width: 80
+    height: 20
+  variable: smoothing
+  text: Smoothing
+  text_position: left
+- style: edit
+  position:
+    x: 485
+    y: 60
+    width: 60
+    height: 20
+  variable: sigma
+  text: Sigma
+  dependency:
+  - action: enable
+    checkfor: all
+    check:
+    - variable: smoothing
+      operator: eq
+      value: true
+  text_position: left
+- style: pushbutton
+  position:
+    x: 575
+    y: 110
+    width: 80
+    height: 20
+  text: Compute
+  method: compute
+  dependency:
+  - action: enable
+    checkfor: all
+    check:
+    - variable: source_defined
+      operator: eq
+      value: true
+  text_position: left
+- style: pushbutton
+  position:
+    x: 575
+    y: 85
+    width: 80
+    height: 20
+  text: Apply to Model
+  method: apply_to_model
+  dependency:
+  - action: enable
+    checkfor: all
+    check:
+    - variable: computed
+      operator: eq
+      value: true
+  text_position: left
+- style: pushbutton
+  position:
+    x: 575
+    y: 60
+    width: 80
+    height: 20
+  text: Save ...
+  method: save_displacement
+  dependency:
+  - action: enable
+    checkfor: all
+    check:
+    - variable: computed
+      operator: eq
+      value: true
+  text_position: left
