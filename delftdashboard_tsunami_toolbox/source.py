@@ -8,10 +8,14 @@ from shapely.geometry import Point
 from cht_tsunami import get_okada_params_from_fault
 
 from delftdashboard.app import app
+from delftdashboard.operations import map
 
 
 def select(*args):
     """Called when the source tab is selected."""
+    # Hide layers of the previously active toolbox/model (DDB convention:
+    # every tab-select callback starts with map.update()).
+    map.update()
     toolbox = app.toolbox["tsunami"]
     toolbox.load_faults()
 
